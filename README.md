@@ -3,20 +3,25 @@
 This inherits from Adafruit_GFX and Adafruit_SPITFT libraries.
 It should behave exactly like Adafruit's own Adafruit_ILI9341 but for 320x480 ST7796S SPI displays.
 
-Note that the popular Chinese Red SPI displays require 3.3V logic signals.   
-5V Uno, Mega, Nano, Leo, ... MUST use level-shifters for CS, RESET, DC, SDI, SCK, LED
+Adafruit_ST7796S_kbv inherits all the methods from  
+the Adafruit_GFX class: https://learn.adafruit.com/adafruit-gfx-graphics-library/overview  
+and Print class: https://www.arduino.cc/en/Serial/Print
+
+Note that the popular Chinese Red SPI displays require 3.3V logic signals.  
+
+5V Uno, Mega, Nano, Leo, ... MUST use level-shifters for CS, RESET, DC, SDI, SCK, LED.  
 3V Zero, Due, STM32, ... can connect directly.
 
-Most Red pcbs contain an AMS1117-3.3 regulator.   
-None have a pullup resistor on LCD_RESET pin.
-Some have a transistor switch on LED pin.   You can switch backlight LED on or off with a GPIO pin (or PWM).
-The new ST7796S boards have an AMS1117-3.3 regulator and an LED transistor.    
+Most Red pcbs contain an AMS1117-3.3 regulator.  
+None have a pullup resistor on LCD_RESET pin.  
+Some have a transistor switch on LED pin.   You can switch backlight LED on or off with a GPIO pin (or PWM).  
+The new Red ST7796S boards have an AMS1117-3.3 regulator and an LED transistor.    
 
-Connect VCC = 5V if there is a regulator.  Use VCC = 3.3V if there is no regulator.
+Connect VCC = 5V if there is a regulator.  Use VCC = 3.3V if there is no regulator.  
 Connect LED to a GPIO if there is a transistor (or 5V with a 1k0 series resistor).  
 Otherwise connect LED to 5V with a 39R series resistor.
 
-You MUST use the RST argument in both Software and Hardware constructors.
+You MUST use the RST argument in both Software and Hardware constructors.  
 Note that many Adafruit examples omit the RST argument (because Adafruit pcbs have a RST pullup resistor)
 
 
