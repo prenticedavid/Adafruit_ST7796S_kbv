@@ -124,6 +124,18 @@ public:
   void setAddrWindow(uint16_t x, uint16_t y, uint16_t w, uint16_t h);
 
   uint8_t readcommand8(uint8_t reg, uint8_t index = 0);
+//#define USE_DRAWRGB
+#if defined(USE_DRAWRGB)
+  void drawRGBBitmap(int16_t x, int16_t y, uint16_t *pcolors, int16_t w, int16_t h);
+#else
+  void drawRGBBitmap(int16_t x, int16_t y, uint16_t *pcolors, int16_t w, int16_t h)
+  {
+            Adafruit_SPITFT::drawRGBBitmap(x, y, pcolors, w, h);
+            startWrite();
+            writeCommand(0x00);   //kill writeGRAM 
+            endWrite();
+  }     
+#endif
 };
 
 #endif // _ADAFRUIT_ST7796SH_
